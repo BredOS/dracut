@@ -9,11 +9,14 @@ license=('GPL')
 depends=('bash' 'coreutils' 'cpio' 'filesystem' 'findutils' 'grep' 'gzip'
          'kmod' 'pkgconf' 'procps-ng' 'sed' 'systemd' 'util-linux' 'xz')
 makedepends=('asciidoc' 'bash-completion' 'git')
-optdepends=('binutils: --uefi option support'
-            'elfutils: strip binaries to reduce initramfs size'
-            'multipath-tools: dmraid dracut module support'
-            'pigz: faster gzip compression'
-            'sbsigntools: uefi_secureboot_cert/key configuration option support')
+optdepends=(
+  'binutils: --uefi option support'
+  'elfutils: strip binaries to reduce initramfs size'
+  'multipath-tools: dmraid dracut module support'
+  'pigz: faster gzip compression'
+  'sbsigntools: uefi_secureboot_cert/key configuration option support'
+  'tpm2-tools: tpm2 support for e.g. LUKS'
+)
 provides=('initramfs')
 backup=('etc/dracut.conf')
 source=("${pkgname}-${pkgver}::git+${url}#tag=${pkgver}?signed"
