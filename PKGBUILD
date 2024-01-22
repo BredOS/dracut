@@ -6,9 +6,27 @@ pkgdesc="An event driven initramfs infrastructure"
 arch=('x86_64')
 url="https://github.com/dracutdevs/dracut"
 license=('GPL')
-depends=('bash' 'coreutils' 'cpio' 'filesystem' 'findutils' 'grep' 'gzip'
-         'kmod' 'pkgconf' 'procps-ng' 'sed' 'systemd' 'util-linux' 'xz')
-makedepends=('asciidoc' 'bash-completion' 'git')
+depends=(
+  'bash'
+  'coreutils'
+  'cpio'
+  'filesystem'
+  'findutils'
+  'grep'
+  'gzip'
+  'kmod'
+  'pkgconf'
+  'procps-ng'
+  'sed'
+  'systemd'
+  'util-linux'
+  'xz'
+)
+makedepends=(
+  'asciidoc'
+  'bash-completion'
+  'git'
+)
 optdepends=(
   'binutils: --uefi option support'
   'elfutils: strip binaries to reduce initramfs size'
