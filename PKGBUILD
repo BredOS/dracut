@@ -12,6 +12,7 @@ depends=(
   'cpio'
   'filesystem'
   'findutils'
+  'gawk'
   'grep'
   'kmod'
   'pkgconf'
