@@ -1,6 +1,6 @@
 # Maintainer: Giancarlo Razzolini <grazzolini@archlinux.org>
 pkgname=dracut
-pkgver=100
+pkgver=101
 pkgrel=1
 pkgdesc="An event driven initramfs infrastructure"
 arch=('x86_64')
@@ -71,8 +71,8 @@ backup=('etc/dracut.conf')
 source=(
   "${pkgname}-${pkgver}::git+${url}#tag=${pkgver}"
 )
-sha512sums=('4369f71c0affaffa9a84c67502c12da76eab0eb027e1baedeaaaf2cabcfbedc2d90d10c10ff0d84bf7b230665486c2324b5ae5f83e8de31066d7855720c9a91b')
-b2sums=('f75ce99f53216ce9dbeea22d67b553fe18fbf32a05daa01b6ee1a01408eaaac36e8e0bb4e8da91828a233d1268a4f0fae587d831c9e4c4d767a438e2ea0976c8')
+sha512sums=('4096f2ba6725f3d5d27f75cdec9f75af42007c86ac0fa8414457ab71ec21a5b76b28597eca3fd77a7eeabd1b62f1c002fda0e38543cbf4b272d30300f3f545e5')
+b2sums=('5e3c5528f6ad7043160a82bcd8a2f7f6d3cb3f8bf56524b0321586aa03faffd41afc3b289e5d25d1ecdb5801c6efe310abcf0dc367646f5cac18790abed6ab3c')
 
 build() {
   local prefix=/usr sysconfdir=/etc
