@@ -82,20 +82,18 @@ provides=('initramfs')
 backup=('etc/dracut.conf')
 source=(
   "${pkgname}-${pkgver}::git+${url}#tag=${pkgver}"
-  dracut-{install,remove}.script
-  90-dracut-install.hook
-  60-dracut-remove.hook
+  kernel-install.sh
+  90-kernel-install-add.hook
+  40-kernel-install-remove.hook
 )
 sha512sums=('fadc8aba143cec154372ae4709a0cb6db9999a4f143bdf79c7307680baf500922b3e5e5ba659e4346a032949bf5b6a00f891421fbc517573dd3d1c9b5a034d56'
-            '1935e69f9992ae3e693c4c1e402f4459cbc3b75f379e2781db63dc7b1a5ba2520fa53cc3b4397276610e07df23ea1be0eb2b56da79c0574b55c4e3fb16a4e44b'
-            '8f8c3a892094dca621db8f18c73501b4f316692d82bb05fc193d772d51c935eb85e0e8a45a2ae6285432421d3733077e74ab4803a722507147cc6e012b374b6d'
-            'a560fba9fdb66c733e15ff299676747f94a98a6da19b1d01293bb01d7e4a1b227e34c0f6c37e2e6924d1e42c028b0006b2b7a6cb8a5797777c6538fd0923356f'
-            '5f8f6f04081061d36cd331737b40a8f523319f0d05d92308c0967de97266c27d3dd901da49ce0850f12c2cd95e5eb19ba6219b5d8a1d075c010420be1900f803')
+            'e49b18780e1753cb8f5e6a978efc45712a82597437af7ce4ade5019fcd84269fae89fd36e16ea27f6a56f71001aecbe2653175bbff6c04eb88d38dfdc344bc6d'
+            '564755b5a60d7ba4371c83429503a73fd04ea42011ba3e0c7f3e5df51108458afd6f75988a38d0ed0ceb626e4d7ba9c5e2a61fc6854463e05d51a91168b4b566'
+            '1f1901712f168157c9caa25ba594e54a399125c554e3cda44aff8aa303b532038f52d10bd374a340e803ad0535e66ad2a1f2158361f6af2ebb4c7f56ef108592')
 b2sums=('e7c65799816b743bbca8fa28e50fafb640192f60967de529a9163fc01552b34b4e8b82e3892e3dac10aca1fccfd67129867d1ba3fdf822811549df97b3345281'
-        '8f60cac605eea34d663c7ca22b616ba07c70a81d61135b364793d31ce294ce49a32452ea109b73fe36b83784587c7bfcf6f5d3cd7e6efc002f8e7ee63c0225ab'
-        '43657d862aa6c1d7fae4f511b0715ad56a2988e43890921ffaf0ee3e1ac9418aaae789524c5cf50d1dc44a4164525a9cbc590a2e41336037115b3409902e8ecd'
-        '5e0e702553060dbc94a378a1b3b7caa52590a33f33d78767a4c3ef0a5360d11520084e91f59b941a62bea8abfcd017cd64132c5f3d42d93319683283a22e0875'
-        'a3bc75e55af379ddd3fee1dd7c6855fcb42366f42d9e10c1725b8e38f81c3eee0a4131badcf6ba2c4addf78aae4084528407af38295ab2b7e62ab16e3fe0b599')
+        'e99bcf7bdf4d5092c3928fc0bf77db1dffd1a827f35c71a1dd300982713daa8b9c8f68997bb95dddad16fff860ad0990faaa68b80334374eeef791cdedc34b78'
+        '6e7d3a07074b46190e2d9c0bc94c11dc631cc86d8413a80d1ad49dfb1c973e98718dd241a0155eedbc1d7749880730066504a915bc175f67f7915372d62b9676'
+        '3452b73ac812a225a218ff261e6105be7d2c6f9d9e2743d647ba2f209da21a5a7bd616f8a3a28c7967a715e7efcb9c84134d3e209c85785c2ef6f81109251681')
 
 build() {
   cd ${pkgname}-${pkgver}
@@ -112,7 +110,7 @@ package() {
   DESTDIR="$pkgdir" make install
 
   # pacman hooks
-  install -Dm755 "${srcdir}"/dracut-install.script "${pkgdir}"/usr/share/libalpm/scripts/dracut-install
-  install -Dm755 "${srcdir}"/dracut-remove.script "${pkgdir}"/usr/share/libalpm/scripts/dracut-remove
-  install -Dm644 -t "${pkgdir}"/usr/share/libalpm/hooks "${srcdir}"/*.hook
+  install -Dm644 "${srcdir}"/90-kernel-install-add.hook "${srcdir}"/40-kernel-install-remove.hook \
+    -t"${pkgdir}/usr/share/libalpm/hooks"
+  install -Dm755 "${srcdir}"/kernel-install.sh "${pkgdir}/usr/share/libalpm/scripts/kernel-install"
 }
